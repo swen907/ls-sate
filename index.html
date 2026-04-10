@@ -1,298 +1,417 @@
-<!doctype html>
-<html lang="ru" class="h-full">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-
+  <title>ЛС Компани — Сервисный центр, Тюмень</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-    body { font-family: 'Manrope', sans-serif; box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .link-btn {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
+    :root {
+      --bg:      #f5f4f0;
+      --surface: #ffffff;
+      --border:  #e6e2da;
+      --border2: #d0cbc0;
+      --text:    #1a1814;
+      --muted:   #8a8474;
+      --accent:  #2a5caa;
+      --tg-c:    #27a7e7;
+      --max-c:   #005FF9;
+      --mail-c:  #c95b20;
+      --green:   #1a9e4e;
     }
-    .link-btn::before {
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Mulish', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
       content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .link-btn:hover::before { opacity: 1; }
-    .link-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.2); }
-    .link-btn:active { transform: translateY(-1px); }
-
-    .card-glass {
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .fade-up { animation: fadeUp 0.6s ease forwards; opacity: 0; }
-    .fade-up-1 { animation-delay: 0.1s; }
-    .fade-up-2 { animation-delay: 0.2s; }
-    .fade-up-3 { animation-delay: 0.3s; }
-    .fade-up-4 { animation-delay: 0.4s; }
-    .fade-up-5 { animation-delay: 0.5s; }
-    .fade-up-6 { animation-delay: 0.6s; }
-    .fade-up-7 { animation-delay: 0.7s; }
-
-    .pulse-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.6); }
-      50% { box-shadow: 0 0 0 8px rgba(74,222,128,0); }
-    }
-
-    .map-wrapper {
-      border-radius: 16px;
-      overflow: hidden;
-      position: relative;
-    }
-    .map-wrapper::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.1);
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 44px 44px;
+      opacity: .4;
       pointer-events: none;
+    }
+
+    .page {
+      position: relative; z-index: 1;
+      max-width: 460px;
+      margin: 0 auto;
+      padding: 56px 20px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    /* HEADER */
+    .header { text-align: center; }
+
+    .monogram {
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      width: 76px; height: 76px;
+      border-radius: 50%;
+      background: var(--text);
+      margin-bottom: 22px;
+      position: relative;
+    }
+    .monogram::after {
+      content: '';
+      position: absolute; inset: -6px;
+      border-radius: 50%;
+      border: 1px solid var(--border2);
+    }
+    .monogram span {
+      font-family: 'Playfair Display', serif;
+      font-size: 27px; font-weight: 900;
+      color: var(--bg);
+      letter-spacing: -1px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 7vw, 40px);
+      font-weight: 900;
+      letter-spacing: -.5px;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      font-size: 10.5px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+
+    .desc {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+    .desc strong { color: var(--text); font-weight: 700; }
+
+    /* SECTION LABEL */
+    .label {
+      font-size: 10px; letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted); font-weight: 700;
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 12px;
+    }
+    .label::before, .label::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--border);
+    }
+
+    /* BUTTONS */
+    .contacts { display: flex; flex-direction: column; gap: 8px; }
+
+    .btn {
+      display: flex; align-items: center; gap: 14px;
+      padding: 15px 18px;
+      border-radius: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      font-family: 'Mulish', sans-serif;
+      font-size: 15px; font-weight: 600;
+      transition: transform .18s cubic-bezier(.34,1.56,.64,1), border-color .18s, box-shadow .18s;
+      cursor: pointer;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--c);
+      box-shadow: 0 6px 20px color-mix(in srgb, var(--c) 14%, transparent);
+    }
+    .btn:active { transform: none; }
+
+    .btn-tg   { --c: var(--tg-c); }
+    .btn-max  { --c: var(--max-c); }
+    .btn-mail { --c: var(--mail-c); }
+
+    .btn-icon {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--c) 10%, white);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .btn-info { flex: 1; }
+    .btn-name { display: block; }
+    .btn-sub  { display: block; font-size: 12px; color: var(--muted); font-weight: 400; margin-top: 1px; }
+
+    .btn-arr {
+      color: var(--muted); font-size: 20px;
+      transition: transform .18s, color .18s;
+    }
+    .btn:hover .btn-arr { transform: translateX(3px); color: var(--c); }
+
+    /* REVIEWS */
+    .reviews-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .reviews-head {
+      padding: 16px 20px;
+      display: flex; align-items: center; gap: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .dgis-logo {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, #22b857, #13893e);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 900; color: #fff;
+      flex-shrink: 0;
+    }
+    .dgis-info { flex: 1; }
+    .dgis-info strong { display: block; font-size: 14px; font-weight: 700; }
+    .dgis-info span   { font-size: 11px; color: var(--muted); }
+
+    .rating-box {
+      background: #fffdf0;
+      border: 1px solid #ede8c0;
+      border-radius: 12px;
+      padding: 6px 16px;
+      text-align: center;
+    }
+    .rating-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px; font-weight: 900;
+      color: #a07800; line-height: 1;
+    }
+    .stars { font-size: 11px; color: #c99a00; }
+
+    .review {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .review:last-of-type { border-bottom: none; }
+    .review-top { display: flex; justify-content: space-between; margin-bottom: 2px; }
+    .review-name { font-size: 14px; font-weight: 700; }
+    .review-s    { font-size: 12px; color: #c99a00; }
+    .review-date { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+    .review-body { font-size: 13.5px; color: #5c5548; line-height: 1.65; }
+
+    .reviews-cta {
+      display: block; text-align: center;
+      padding: 13px;
+      font-size: 13px; font-weight: 700;
+      color: var(--green); text-decoration: none;
+      border-top: 1px solid var(--border);
+      transition: background .15s;
+    }
+    .reviews-cta:hover { background: #f0fbf4; }
+
+    /* MAP */
+    .map-card {
+      border-radius: 20px; overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .map-frame { display: block; width: 100%; height: 280px; border: none; }
+    .map-foot {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 14px 18px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .map-pin {
+      width: 36px; height: 36px;
+      background: #eef2f9;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .map-addr { font-size: 13.5px; font-weight: 600; }
+    .map-city  { font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      font-size: 12px; color: var(--muted); line-height: 1.9;
+    }
+    .footer a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ANIMATIONS */
+    .header, .contacts-wrap, .reviews-wrap, .map-wrap, .footer {
+      animation: up .5s ease both;
+    }
+    .contacts-wrap { animation-delay: .08s; }
+    .reviews-wrap  { animation-delay: .16s; }
+    .map-wrap      { animation-delay: .24s; }
+    .footer        { animation-delay: .32s; }
+
+    @keyframes up {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 400px) {
+      .page { padding: 40px 14px 64px; }
     }
   </style>
 </head>
+<body>
+<div class="page">
 
-<body class="h-full overflow-auto">
-  <div id="app" class="h-full w-full" style="background: #0f0f13;">
-    <!-- Decorative bg -->
-    <div style="position:fixed;inset:0;pointer-events:none;overflow:hidden;">
-      <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0a0a0f 0%,#16101c 25%,#0f0f1a 50%,#1a0f2e 75%,#0d0d14 100%);"></div>
-      <div style="position:absolute;top:-30%;right:-15%;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,0.2) 0%,rgba(99,102,241,0.05) 40%,transparent 70%);filter:blur(40px);"></div>
-      <div style="position:absolute;bottom:-20%;left:-10%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(236,72,153,0.15) 0%,rgba(236,72,153,0.03) 40%,transparent 70%);filter:blur(40px);"></div>
-      <div style="position:absolute;top:20%;left:15%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,0.08) 0%,transparent 60%);filter:blur(35px);"></div>
+  <header class="header">
+    <div class="monogram"><span>ЛС</span></div>
+    <h1>ЛС Компани</h1>
+    <div class="tagline">Сервисный центр · Тюмень</div>
+    <p class="desc">
+      Ремонт <strong>смартфонов, ноутбуков, планшетов</strong> и любой цифровой техники.
+      Бесплатная диагностика, гарантия на все виды работ.
+      Работаем быстро и честно — доверяют тысячи тюменцев.
+    </p>
+  </header>
 
-      <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.03;" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid)" />
-      </svg>
+  <section class="contacts-wrap">
+    <div class="label">Написать нам</div>
+    <div class="contacts">
+
+      <a href="https://t.me/YOURHANDLE" target="_blank" rel="noopener" class="btn btn-tg">
+        <div class="btn-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24">
+            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.93 7.13-1.68 7.94c-.12.56-.46.7-.93.43l-2.58-1.9-1.24 1.2c-.14.14-.26.26-.53.26l.19-2.67 4.84-4.37c.21-.19-.05-.3-.32-.11L8.15 14.36l-2.53-.79c-.55-.17-.56-.55.12-.82l9.88-3.81c.46-.17.86.11.71.79z" fill="#27a7e7"/>
+          </svg>
+        </div>
+        <div class="btn-info">
+          <span class="btn-name">Telegram</span>
+          <span class="btn-sub">Ответим в течение нескольких минут</span>
+        </div>
+        <span class="btn-arr">›</span>
+      </a>
+
+      <a href="https://max.ru/YOURHANDLE" target="_blank" rel="noopener" class="btn btn-max">
+        <div class="btn-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24">
+            <rect width="24" height="24" rx="7" fill="#005FF9"/>
+            <text x="12" y="16" text-anchor="middle" font-family="Mulish,sans-serif" font-size="8.5" font-weight="700" fill="white">MAX</text>
+          </svg>
+        </div>
+        <div class="btn-info">
+          <span class="btn-name">Мессенджер Макс</span>
+          <span class="btn-sub">Российский мессенджер от VK</span>
+        </div>
+        <span class="btn-arr">›</span>
+      </a>
+
+      <a href="mailto:info@ls-company.ru" class="btn btn-mail">
+        <div class="btn-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="4" width="20" height="16" rx="3" stroke="#c95b20" stroke-width="1.8"/>
+            <polyline points="2,7 12,14 22,7" stroke="#c95b20" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <div class="btn-info">
+          <span class="btn-name">Электронная почта</span>
+          <span class="btn-sub">info@ls-company.ru</span>
+        </div>
+        <span class="btn-arr">›</span>
+      </a>
+
     </div>
+  </section>
 
-    <div class="relative z-10 flex flex-col items-center px-4 py-10" style="min-height:100%;">
-      <div class="w-full max-w-md flex flex-col gap-5">
-        <!-- Header -->
-        <div class="text-center fade-up fade-up-1">
-          <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-4" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">
-            <i data-lucide="wrench" style="width:36px;height:36px;color:#fff;"></i>
-          </div>
-          <h1 id="el-name" class="text-2xl font-extrabold text-white tracking-tight">ТехноСервис</h1>
-          <p id="el-desc" class="text-sm mt-1" style="color:#9ca3af;">Ремонт техники любой сложности</p>
-          <div class="flex items-center justify-center gap-2 mt-3">
-            <div class="pulse-dot" style="background:#4ade80;"></div>
-            <span class="text-xs font-medium" style="color:#4ade80;">Сейчас открыто</span>
-          </div>
+  <section class="reviews-wrap">
+    <div class="label">Отзывы на 2ГИС</div>
+    <div class="reviews-card">
+      <div class="reviews-head">
+        <div class="dgis-logo">2</div>
+        <div class="dgis-info">
+          <strong>2ГИС</strong>
+          <span>Отзывы о компании</span>
         </div>
-
-        <!-- Phone -->
-        <a id="el-phone-btn" href="tel:+79991234567" class="link-btn flex items-center gap-4 px-5 py-4 rounded-2xl card-glass fade-up fade-up-2 no-underline" style="color:#fff;">
-          <div class="flex items-center justify-center w-11 h-11 rounded-xl" style="background:rgba(74,222,128,0.15);">
-            <i data-lucide="phone" style="width:20px;height:20px;color:#4ade80;"></i>
-          </div>
-          <div>
-            <div class="text-xs font-medium" style="color:#9ca3af;">Позвонить</div>
-            <div id="el-phone" class="text-sm font-bold">+7 (999) 123-45-67</div>
-          </div>
-          <i data-lucide="chevron-right" class="ml-auto" style="width:18px;height:18px;color:#4b5563;"></i>
-        </a>
-
-        <!-- Telegram -->
-        <a id="el-tg-btn" href="https://t.me/username" target="_blank" rel="noopener noreferrer" class="link-btn flex items-center gap-4 px-5 py-4 rounded-2xl fade-up fade-up-3 no-underline" style="background:linear-gradient(135deg,#229ED9,#1a8ac4);color:#fff;">
-          <div class="flex items-center justify-center w-11 h-11 rounded-xl" style="background:rgba(255,255,255,0.18);">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.492-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
-            </svg>
-          </div>
-          <div>
-            <div class="text-xs font-medium" style="color:rgba(255,255,255,0.7);">Написать в</div>
-            <div class="text-sm font-bold">Telegram</div>
-          </div>
-          <i data-lucide="chevron-right" class="ml-auto" style="width:18px;height:18px;color:rgba(255,255,255,0.4);"></i>
-        </a>
-
-        <!-- MAX -->
-        <a id="el-max-btn" href="https://max.ru/" target="_blank" rel="noopener noreferrer" class="link-btn flex items-center gap-4 px-5 py-4 rounded-2xl fade-up fade-up-4 no-underline" style="background:linear-gradient(135deg,#FF5C00,#FF3D00);color:#fff;">
-          <div class="flex items-center justify-center w-11 h-11 rounded-xl" style="background:rgba(255,255,255,0.18);">
-            <i data-lucide="message-circle" style="width:22px;height:22px;color:#fff;"></i>
-          </div>
-          <div>
-            <div class="text-xs font-medium" style="color:rgba(255,255,255,0.7);">Написать в</div>
-            <div class="text-sm font-bold">MAX</div>
-          </div>
-          <i data-lucide="chevron-right" class="ml-auto" style="width:18px;height:18px;color:rgba(255,255,255,0.4);"></i>
-        </a>
-
-        <!-- 2GIS -->
-        <a id="el-2gis-btn" href="https://2gis.ru/" target="_blank" rel="noopener noreferrer" class="link-btn flex items-center gap-4 px-5 py-4 rounded-2xl fade-up fade-up-5 no-underline" style="background:linear-gradient(135deg,#3DB54A,#2d9a3a);color:#fff;">
-          <div class="flex items-center justify-center w-11 h-11 rounded-xl" style="background:rgba(255,255,255,0.18);">
-            <i data-lucide="star" style="width:22px;height:22px;color:#fff;"></i>
-          </div>
-          <div>
-            <div class="text-xs font-medium" style="color:rgba(255,255,255,0.7);">Наши отзывы</div>
-            <div class="text-sm font-bold">2ГИС ★ 4.9</div>
-          </div>
-          <i data-lucide="chevron-right" class="ml-auto" style="width:18px;height:18px;color:rgba(255,255,255,0.4);"></i>
-        </a>
-
-        <!-- Address -->
-        <div class="fade-up fade-up-6">
-          <div class="flex items-center gap-2 mb-3 px-1">
-            <i data-lucide="map-pin" style="width:16px;height:16px;color:#8b5cf6;"></i>
-            <span id="el-address" class="text-sm font-semibold" style="color:#d1d5db;">ул. Примерная, 12, Москва</span>
-          </div>
-          <div class="map-wrapper" style="height:200px;background:#1a1a24;">
-            <iframe
-              src="https://www.openstreetmap.org/export/embed.html?bbox=37.6073%2C55.7529%2C37.6223%2C55.7589&layer=mapnik&marker=55.7558%2C37.6173"
-              style="width:100%;height:100%;border:0;filter:grayscale(0.3) brightness(0.85);"
-              loading="lazy"
-              title="Карта расположения"
-              sandbox="allow-same-origin"></iframe>
-          </div>
+        <div class="rating-box">
+          <div class="rating-num">4.9</div>
+          <div class="stars">★★★★★</div>
         </div>
+      </div>
 
-        <!-- Footer -->
-        <div class="text-center fade-up fade-up-7 pb-4">
-          <p class="text-xs" style="color:#4b5563;">© 2025 <span id="el-footer-name">ТехноСервис</span> — Все права защищены</p>
+      <div class="review">
+        <div class="review-top">
+          <span class="review-name">Сергей П.</span>
+          <span class="review-s">★★★★★</span>
+        </div>
+        <div class="review-date">12 марта 2025</div>
+        <p class="review-body">Сдал iPhone 13 с разбитым экраном — заменили за полтора часа. Качество отличное, цена приятно удивила!</p>
+      </div>
+
+      <div class="review">
+        <div class="review-top">
+          <span class="review-name">Наталья Р.</span>
+          <span class="review-s">★★★★★</span>
+        </div>
+        <div class="review-date">28 марта 2025</div>
+        <p class="review-body">Ноутбук жутко перегревался. Почистили и поменяли термопасту — работает как новый. Спасибо мастерам!</p>
+      </div>
+
+      <div class="review">
+        <div class="review-top">
+          <span class="review-name">Игорь В.</span>
+          <span class="review-s">★★★★★</span>
+        </div>
+        <div class="review-date">5 апреля 2025</div>
+        <p class="review-body">Быстро починили планшет. Диагностика бесплатно, цена честная, гарантию дали. Однозначно рекомендую.</p>
+      </div>
+
+      <a href="https://2gis.ru/tyumen" target="_blank" rel="noopener" class="reviews-cta">
+        Читать все отзывы на 2ГИС →
+      </a>
+    </div>
+  </section>
+
+  <section class="map-wrap">
+    <div class="label">Как нас найти</div>
+    <div class="map-card">
+      <iframe
+        class="map-frame"
+        src="https://yandex.ru/map-widget/v1/?ll=65.643716%2C57.178055&z=17&pt=65.643716%2C57.178055,pm2rdm&l=map"
+        allowfullscreen
+        loading="lazy"
+        title="ЛС Компани — ул. Малиновского 5Б, Тюмень"
+      ></iframe>
+      <div class="map-foot">
+        <div class="map-pin">📍</div>
+        <div>
+          <div class="map-addr">ул. Малиновского, 5Б</div>
+          <div class="map-city">Тюмень, мкр. Мыс · 625015</div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <script>
-    const defaultConfig = {
-      center_name: 'ТехноСервис',
-      center_desc: 'Ремонт техники любой сложности',
-      address_text: 'ул. Примерная, 12, Москва',
-      phone_number: '+7 (999) 123-45-67',
-      telegram_url: 'https://t.me/username',
-      max_url: 'https://max.ru/',
-      twogis_url: 'https://2gis.ru/',
-      background_color: '#0f0f13',
-      surface_color: '#6366f1',
-      text_color: '#ffffff',
-      accent_color: '#4ade80',
-      secondary_action_color: '#9ca3af',
-      font_family: 'Manrope',
-      font_size: 14
-    };
+  <footer class="footer">
+    <p>© 2025 ЛС Компани · Тюмень</p>
+    <p>Пн — Вс &nbsp;·&nbsp; 9:00 – 20:00</p>
+    <p style="margin-top:8px">
+      <a href="https://yandex.ru/maps/55/tyumen/?pt=65.643716,57.178055&z=17" target="_blank" rel="noopener">
+        Открыть в Яндекс.Картах
+      </a>
+    </p>
+  </footer>
 
-    function applyConfig(config) {
-      const c = key => config[key] || defaultConfig[key];
-      const font = c('font_family');
-      const base = c('font_size');
-      const bg = c('background_color');
-      const surface = c('surface_color');
-      const text = c('text_color');
-      const accent = c('accent_color');
-      const secondary = c('secondary_action_color');
-
-      document.getElementById('app').style.background = bg;
-      document.getElementById('app').style.fontFamily = `${font}, sans-serif`;
-
-      const name = document.getElementById('el-name');
-      name.textContent = c('center_name');
-      name.style.color = text;
-      name.style.fontSize = `${base * 1.7}px`;
-
-      const desc = document.getElementById('el-desc');
-      desc.textContent = c('center_desc');
-      desc.style.color = secondary;
-      desc.style.fontSize = `${base * 0.85}px`;
-
-      const phone = document.getElementById('el-phone');
-      phone.textContent = c('phone_number');
-      phone.style.fontSize = `${base}px`;
-      phone.style.color = text;
-
-      const phoneBtn = document.getElementById('el-phone-btn');
-      phoneBtn.href = 'tel:' + c('phone_number').replace(/[\s()-]/g, '');
-
-      document.getElementById('el-tg-btn').href = c('telegram_url');
-      document.getElementById('el-max-btn').href = c('max_url');
-      document.getElementById('el-2gis-btn').href = c('twogis_url');
-
-      const addr = document.getElementById('el-address');
-      addr.textContent = c('address_text');
-      addr.style.color = secondary;
-      addr.style.fontSize = `${base * 0.85}px`;
-
-      document.getElementById('el-footer-name').textContent = c('center_name');
-
-      // Accent dot
-      const dot = document.querySelector('.pulse-dot');
-      const dotText = document.querySelector('.pulse-dot + span');
-      if (dot) dot.style.background = accent;
-      if (dotText) dotText.style.color = accent;
-
-      // Header icon gradient
-      const iconBox = document.querySelector('.rounded-2xl.mb-4');
-      if (iconBox) iconBox.style.background = `linear-gradient(135deg, ${surface}, ${surface}dd)`;
-
-      // Phone icon accent
-      const phoneIcon = phoneBtn.querySelector('.rounded-xl');
-      if (phoneIcon) phoneIcon.style.background = accent + '26';
-    }
-
-    window.elementSdk.init({
-      defaultConfig,
-      onConfigChange: async (config) => applyConfig(config),
-      mapToCapabilities: (config) => ({
-        recolorables: [
-          { get: () => config.background_color || defaultConfig.background_color, set: v => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
-          { get: () => config.surface_color || defaultConfig.surface_color, set: v => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
-          { get: () => config.text_color || defaultConfig.text_color, set: v => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
-          { get: () => config.accent_color || defaultConfig.accent_color, set: v => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); } },
-          { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: v => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } }
-        ],
-        borderables: [],
-        fontEditable: {
-          get: () => config.font_family || defaultConfig.font_family,
-          set: v => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
-        },
-        fontSizeable: {
-          get: () => config.font_size || defaultConfig.font_size,
-          set: v => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
-        }
-      }),
-      mapToEditPanelValues: (config) => new Map([
-        ['center_name', config.center_name || defaultConfig.center_name],
-        ['center_desc', config.center_desc || defaultConfig.center_desc],
-        ['address_text', config.address_text || defaultConfig.address_text],
-        ['phone_number', config.phone_number || defaultConfig.phone_number],
-        ['telegram_url', config.telegram_url || defaultConfig.telegram_url],
-        ['max_url', config.max_url || defaultConfig.max_url],
-        ['twogis_url', config.twogis_url || defaultConfig.twogis_url]
-      ])
-    });
-
-    lucide.createIcons();
-  </script>
+</div>
 </body>
 </html>
